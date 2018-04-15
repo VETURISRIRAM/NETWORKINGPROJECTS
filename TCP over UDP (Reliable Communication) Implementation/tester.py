@@ -38,7 +38,7 @@ PARSER.add_argument('-v', '--verbose', action="store_true",
                     help="Enable extra verbose mode.")
 ARGS = PARSER.parse_args()
 
-LOGGER = importantfiles.logging.get_logger("hw5-tester")
+LOGGER = importantfiles.logging.get_logger("reliable-tester")
 if ARGS.verbose:
     LOGGER.setLevel(logging.DEBUG)
 
