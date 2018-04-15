@@ -44,7 +44,7 @@ def send(sock: socket.socket, data: bytes):
         else:
             first_packet = make_packet(seqnum, acknum, ack, final)
             sock.send(first_packet)
-            logger = homework5.logging.get_logger("hw5-sender")
+            logger = homework5.logging.get_logger("reliable-sender")
             chunk_size = homework5.MAX_PACKET
             pause = .1            
             offsets = range(0, len(data), homework5.MAX_PACKET)
