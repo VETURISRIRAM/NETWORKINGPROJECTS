@@ -4,25 +4,16 @@ test cases for a simple http client.
 import logging
 import sys
 from urllib.parse import urlparse
-
-# from hw1 import retrieve_url
-from hw1 import retrieve_url
+from client import retrieve_url
 
 import requests
 
 TEST_CASES = ['http://www.example.com',  # most basic example (with no slash)
-              'http://accc.uic.edu/contact',  # another basic example
               'http://i.imgur.com/fyxDric.jpg',  # is an image
-              'http://illinois.edu/doesnotexist',  # causes 404
               'http://www.ifyouregisterthisforclassyouareoutofcontrol.com/', # NXDOMAIN
-              'http://marvin.cs.uic.edu:8080/', # nonstandard port
               'http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx' # chunked encoding
              ]
 
-TEST_CASES_BONUS = ['http://bits-cluster-1.research.uicbits.net/🐻.🐷',  # utf-8 in the url
-                    'https://www.cs.uic.edu/~ckanich/',  # https
-                    'http://www.fieggen.com/shoelace'  # redirects to trailing slash
-                   ]
 
 
 def retrieve_url_bonus(url):
@@ -38,10 +29,6 @@ def retrieve_url_bonus(url):
 
 
 def retrieve_url_oracle(url):
-    '''
-    the easiest way to complete this assignment. too bad you can't use it.
-    '''
-
     scheme = urlparse(url).scheme
     if scheme != 'http':
         return None
@@ -53,9 +40,6 @@ def retrieve_url_oracle(url):
 
 
 def compare_output(url, oracle=retrieve_url_oracle):
-    '''
-    compare hw2.py output with requests output for ::url::
-    '''
     try:
         # download the same page twice to check for dynamic content
         correct_output = oracle(url)
