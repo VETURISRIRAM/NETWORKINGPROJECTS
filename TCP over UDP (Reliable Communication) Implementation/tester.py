@@ -8,8 +8,8 @@ import os
 import tempfile
 import signal
 import logging
-import homework5.logging
-import homework5.utils
+import importantfiles.logging
+import importantfiles.utils
 
 DESC = sys.modules[globals()['__name__']].__doc__
 PARSER = argparse.ArgumentParser(description=DESC)
@@ -38,7 +38,7 @@ PARSER.add_argument('-v', '--verbose', action="store_true",
                     help="Enable extra verbose mode.")
 ARGS = PARSER.parse_args()
 
-LOGGER = homework5.logging.get_logger("hw5-tester")
+LOGGER = importantfiles.logging.get_logger("hw5-tester")
 if ARGS.verbose:
     LOGGER.setLevel(logging.DEBUG)
 
