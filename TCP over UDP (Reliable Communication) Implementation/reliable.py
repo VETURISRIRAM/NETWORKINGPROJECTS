@@ -86,7 +86,7 @@ def recv(sock: socket.socket, dest: io.BufferedIOBase) -> int:
         The number of bytes written to the destination.
     """
     
-    logger = homework5.logging.get_logger("hw5-receiver")
+    logger = homework5.logging.get_logger("reliable-receiver")
     # Naive solution, where we continually read data off the socket
     # until we don't receive any more data, and then return.
     
