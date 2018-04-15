@@ -1,12 +1,4 @@
-"""
-Name : Sriram Venkata Subrahmanyam Veturi
-UIN : 651427659
-NetID : svetur2
-resolve.py: a recursive resolver built using dnspython
-"""
-
 import argparse
-
 import dns.message
 import dns.name
 import dns.query
@@ -88,19 +80,12 @@ def lookup(target_name: dns.name.Name,
     """
     This function uses a recursive resolver to find the relevant answer to the
     query.
-    TODO: replace this implementation with one which asks the root servers
-    and recurses to find the proper answer.
     """
-    # outbound_query = dns.message.make_query(target_name, qtype)
-    # response = dns.query.udp(outbound_query, "198.41.0.4", 10)
-
     global target_hostnames
     target_hostnames = []
 
     if target_name not in target_hostnames:
         target_hostnames.append(target_name)
-#        print(target_name)
-#        print(target_hostnames)
         x = 0
         ip_addresses = {}
         while (x < len(ROOT_SERVERS)):
@@ -153,9 +138,6 @@ def recursive_dns(target_name: dns.name.Name,
                             = recursive_dns(target_name, qtype, str(x))
                         if dns_reply is not None and len(dns_reply.answer) > 0:
                             return dns_reply
-
-#        print(no_of_queries)
-
         return response
 
     except:
@@ -169,7 +151,6 @@ def print_results(results: dict) -> None:
     take the results of a `lookup` and print them to the screen like the host
     program would.
     """
-#    print("Print Results")
     for rtype, fmt_str in FORMATS:
         for result in results.get(rtype, []):
             print(fmt_str.format(**result))
@@ -192,10 +173,8 @@ def main():
     print(program_args.name)
 
     temp = program_args.name
-#    print(temp)
 
     argument_list = set(temp)  # To avoid duplicate entries
-#    print(argument_list)
     for a_domain_name in argument_list:
         print_results(collect_results(a_domain_name))
 
