@@ -1,7 +1,3 @@
-"""
-Code for getting and configuring a logger for hw5.
-"""
-
 import logging
 import sys
 
