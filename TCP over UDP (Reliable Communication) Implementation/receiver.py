@@ -8,7 +8,7 @@ import argparse
 import sys
 import logging
 import homework5.wire
-import hw5
+import reliable
 
 PARSER = argparse.ArgumentParser(description="Client script for sending data "
                                              "over a faulty network "
@@ -23,13 +23,13 @@ PARSER.add_argument('-v', '--verbose', action="store_true",
 ARGS = PARSER.parse_args()
 
 if ARGS.verbose:
-    logging.getLogger('hw5-receiver').setLevel(logging.DEBUG)
+    logging.getLogger('reliable-receiver').setLevel(logging.DEBUG)
 
 OUTPUT = open(ARGS.file, 'wb') if ARGS.file else sys.stdout.buffer
 
 SOC = homework5.wire.bad_socket(ARGS.port)
 
-hw5.recv(SOC, OUTPUT)
+reliable.recv(SOC, OUTPUT)
 
 SOC.close()
 OUTPUT.close()
