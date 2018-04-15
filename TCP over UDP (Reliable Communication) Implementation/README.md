@@ -1,14 +1,8 @@
----
-title: homework 5
-section: homeworks
-due: 11:59PM, November 27th, 2017
----
 
+## Reliable Communication
 
-## Homework 5: Reliable Communication
-
-In this homework, you will implement reliable communication over an unreliable
-link, just like TCP.
+In this project, a reliable communication over an unreliable link is implemented,
+just like TCP.
 
 You will be provided with code that simulates an unreliable link between sender
 and receiver.  This link has a very constrained buffer (only two packets can
