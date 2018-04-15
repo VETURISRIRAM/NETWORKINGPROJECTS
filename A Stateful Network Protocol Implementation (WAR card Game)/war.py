@@ -1,7 +1,3 @@
-# Name : Sriram Venkata Subrahmanyam Veturi
-# UIN  : 651427659
-# NetID: svetur2
-
 """
 war card game client and server
 """
@@ -67,19 +63,12 @@ def readexactly(sock, numbytes):
 
 # Function to end the game in case of any errors
 def kill_game(player1, player2):
-    """
-    TODO: If either client sends a bad message, immediately nuke the game.
-    """
-
     # Close the connections
     player1.close()
     player2.close()
+    
+# Function to compare the cards of the players
 def compare_cards(player1_card, player2_card):
-    """
-    TODO: Given an integer card representation, return -1 for card1 < card2,
-    0 for card1 = card2, and 1 for card1 > card2
-    """
-
     # Mod 13 would give us the value to be compared
     P1 = player1_card % 13
     P2 = player2_card % 13
@@ -93,13 +82,8 @@ def compare_cards(player1_card, player2_card):
     if P1 > P2:  # Player 1 wins
         return 0
 
-
+# Function to deal the cards to the players
 def deal_cards():
-    """
-    TODO: Randomize a deck of cards (list of ints 0..51), and return two
-    26 card "hands."
-    """
-
     cards_deck = []
     i = 0
 
@@ -123,10 +107,8 @@ def deal_cards():
     playing_cards = [hand1, hand2]
     return playing_cards  # Returning both the players' decks
 
-
 # Function to check if the card is used or not
 def card_in_deck(used_card, dealt_deck):
-
     if used_card in dealt_deck:  # Check if the card is in deck
         return True
     else:
@@ -270,11 +252,6 @@ async def pairing_players(reader, writer):  # Function
 
 
 def serve_game(host, port):
-    """
-    TODO: Open a socket for listening for new connections on host:port, and
-    perform the war protocol to serve a game of war between each client.
-    This function should run forever, continually serving clients.
-    """
     print("Server Implementation!!")
 
     # Get an event loop
@@ -302,21 +279,12 @@ def serve_game(host, port):
     # Close the get event loop
     my_event_loop.close()
 
-
 async def limit_client(host, port, loop, sem):
-    """
-    Limit the number of clients currently executing.
-    You do not need to change this function.
-    """
     async with sem:
         return await client(host, port, loop)
 
 
 async def client(host, port, loop):
-    """
-    Run an individual client on a given event loop.
-    You do not need to change this function.
-    """
     try:
 
         reader, writer = await asyncio.open_connection(host, port, loop=loop)
