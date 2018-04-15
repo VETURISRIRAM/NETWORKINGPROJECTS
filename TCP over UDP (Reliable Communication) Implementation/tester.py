@@ -1,6 +1,3 @@
-"""
-Utility script for testing HW5 solutions under user set conditions.
-"""
 import time
 import argparse
 import subprocess
