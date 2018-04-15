@@ -1,6 +1,3 @@
-"""
-Shared utilities for testing implementations of HW5.
-"""
 import pathlib
 import typing
 import hashlib
