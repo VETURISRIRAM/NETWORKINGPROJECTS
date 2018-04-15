@@ -4,11 +4,11 @@
 In this project, a reliable communication over an unreliable link is implemented,
 just like TCP.
 
-You will be provided with code that simulates an unreliable link between sender
+The code simulates an unreliable link between sender
 and receiver.  This link has a very constrained buffer (only two packets can
-be 'in flight' at a time), and can have arbitrary delay and loss rates.  Your
-job will be to create and implement a protocol over this connection that
-correctly transfers data, in a reasonable amount of time.
+be 'in flight' at a time), and can have arbitrary delay and loss rates. 
+A protocol over this connection that correctly transfers data, in a reasonable amount of time
+is implemented.
 
 
 ### Writing Your Solution
@@ -42,7 +42,7 @@ direction), the third packet will be dropped, so it is important that you get
 your timeouts and your acknowledgments right.
 
 
-### Testing Your Solution
+### Testing the implementation
 
 You can use the provided `tester.py` script when testing your solution.  This
 script uses the `receiver.py`, `sender.py`, and `server.py` scripts to
@@ -85,71 +85,27 @@ with a 5% loss rate, and with a latency of 100ms, you could use the following:
 `python3 tester.py --file test_data.txt --loss .05 --delay 0.1`.
 
 
-### Hints and Suggestions
+### Key Notes
 
- * A key part of this homework is determining how long to wait before resending
+ * A key part of this project is determining how long to wait before resending
    a packet.  You should estimate this timeout value using the EWMA technique
    for estimating the RTT, and use this in determining your timeout. With
    correctly tuned timeouts, lower RTT will result in higher throughput.
 
-   A good way of determining the timeout to use is the "estimated RTT +
-   (deviation  of RTT * 4)".  You should check with your book for more details.
-
+ * A good way of determining the timeout to use is the "estimated RTT +
+   (deviation  of RTT * 4)".  
+   
  * Use the included `--verbose` option to include very detailed information
    about what your code is sending over the network, and how the network
    is handling that data.
 
  * Use the included `--receive` option to see the results of your file transfer.
    By default, the testing script will store the results of your code to a
-   temporary location.  This option may be useful if you're not sure how or
-   why the received file does not match the sent file.
-
- * Make sure you try your solution under many different loss ratios and
-   latencies by changing the parameters in the `tester.py` script.
+   temporary location.
 
  * Keep your packets smaller than or equal to `homework5.MAX_PACKET` (1400
    bytes).
 
  * Pay attention to the end of the connection. Ensure that both sides of the
    connection finish without user assistance, even if packet losses occur,
-   while guaranteeing that the entire file is transferred. Look at the
-   FIN/FINACK/ACK sequence in TCP for ideas.
-
-
-### Grading
-
-You solution will be graded by using it to transfer six different files,
-each under different simulated test conditions.  For each test case, there is a
-minimum throughput requirement and a timeout for your program to exit.
-The timeout is set as 50% more than the corresponding required throughput.
-
-Each test case will be scored accordingly:
-
-| Case                                           | Points Earned |
-| ---------------------------------------------- | ------------- |
-| File is not transmitted correctly              |             0 |
-| Transmission takes longer than the max time    |             0 |
-| Successful transmission, but low throughput    |             1 |
-| Successful transmission, fast throughput       |             2 |
-
-
-If your program exits normally before the timeout, but the content of the
-received file is invalid, then **zero points** are awarded.
-
-If your program doesn’t exit before the timeout, it will be terminated
-before completion, resulting in incorrect file content, and so **0 points**.
-
-If the program exits normally before the timeout and the received file’s content
-is valid *but* the throughput obtained is lower than the required minimum
-throughput then you receive **1 point**.
-
-If your program correctly transmits the file below the timeout, and with the
-required throughput, it will receive **2 points**.
-
-Code that earns at least 5 of the above points, and which is both "PEP 8" and
-"pylint" compatible will earn an additional **1 point**.
-
-There are 13 points possible on this assignment.  Your solution will be graded
-out of 12 possible points.
-
-This assignment is due **November 27th at 11:59pm**.
+   while guaranteeing that the entire file is transferred. 
